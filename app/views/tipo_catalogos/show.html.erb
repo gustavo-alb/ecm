@@ -1,0 +1,18 @@
+<%model_class = TipoCatalogo%>
+<%content_for :titulo do%>
+  Detalhes de 
+  <%end%>
+  <dl class="dl-horizontal">
+          <dt><strong>Nome:</strong></dt>
+      <dd><%= @tipo_catalogo.nome %></dd>
+          <dt><strong>Ativo:</strong></dt>
+      <dd><%= @tipo_catalogo.ativo %></dd>
+    
+  </dl>
+  <%= link_to 'Voltar', tipo_catalogos_path, :class => 'btn btn-default'  %>
+  <%= link_to 'Editar', edit_tipo_catalogo_path(@tipo_catalogo), :class => 'btn btn-default' %>
+  <%= link_to "Apagar",
+              tipo_catalogo_path(@tipo_catalogo),
+              :method => 'delete',
+              :data => { :confirm => "Você tem certeza?" },
+              :class => 'btn btn-danger' %>

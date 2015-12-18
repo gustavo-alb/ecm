@@ -1,0 +1,47 @@
+<%content_for :titulo do%>
+  Catalogos
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="input-group col-md-4 pull-right" style="margin-right: 20px;">
+    <%= search_form_for @q do |f|%>
+      <%= f.search_field :nome_cont,:class=>"form-control input-lg"%>
+      <span class="input-group-btn">
+        <%= button_tag(type: 'submit', class: "btn btn-info btn-lg") do %>
+          <span class="glyphicon glyphicon-search"></span>
+        <% end %>
+      </span>
+    </div>
+  <%end%>
+  <%= link_to "Criar",new_catalogo_path,:class=>"btn btn-primary"%>
+<%end%>
+<table class="table table-striped tabela-colapsavel">
+  <thead>
+    <tr>
+      <th>nome</th>
+      <th>tipo_id</th>
+      <th>usuario_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @catalogos.each_with_index do |c,i| %>
+      <tr>
+        <td><%= c.nome%></td>
+        <td><%= c.tipo_catalogo.nome%></td>
+        <td><%= c.user.email%></td>
+        <td>
+          <%= link_to "Editar", edit_catalogo_path(c),:class=>"btn btn-primary btn-xs"%>
+          <%= link_to "Visualizar",catalogo_path(c),:class=>"btn btn-primary btn-xs"%>
+          <%= link_to "Apagar", catalogo_path(c),:class=>"btn btn-danger btn-xs",:method=>:delete,:'data-confirm'=>"Tem Certeza?"%>
+        </td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+<%= paginate @catalogos%>

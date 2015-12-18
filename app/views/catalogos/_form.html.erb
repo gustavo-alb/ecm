@@ -1,0 +1,14 @@
+<%= simple_nested_form_for @catalogo, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome %>
+  <%= f.input :tipo_catalogo_id,as: :select,collection: @tipos %>
+  <%= f.input :user_id,as: :hidden,input_html: {value: current_user.id}%>
+  <%= f.simple_fields_for :atributos do |a| %>
+    <%= a.input :nome %>
+    <%= a.input :tipo,as: :select,collection: Atributo::TIPO.collect{|t|t.to_s.humanize} %>
+    <%= a.link_to_remove "X" %>
+  <% end %>
+  <p><%= f.link_to_add "+", :atributos %></p>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to "Cancelar",
+catalogos_path, :class => 'btn btn-default' %>
+<% end %>

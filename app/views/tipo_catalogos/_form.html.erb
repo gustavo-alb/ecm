@@ -1,0 +1,7 @@
+<%= simple_form_for @tipo_catalogo, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome %>
+  <%= f.input :ativo,as: :select, collection: [["Sim",true],["Não",false]] %>
+  <%= f.button :submit, "Salvar",:class => 'btn-primary' %>
+  <%= link_to "Cancelar",
+tipo_catalogos_path, :class => 'btn btn-default' %>
+<% end %>

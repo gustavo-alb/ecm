@@ -1,0 +1,5 @@
+<%%model_class = <%=singular_table_name.camelize%>%>
+<%%content_for :titulo do%>
+  Criando registro de <%=singular_table_name.camelize%>
+  <%%end%>
+  <%%= render :partial => 'form' %>
